@@ -25,6 +25,7 @@ urlpatterns = [
 	# consulta 0: dame los Datos de la app
 	path('qry0/', DatappViewSet.as_view({'get': 'list'}), name='qry0'),
 
+	## Canal = Muro del usuario (el usuario no fue implementado aun)
 	# consulta 1: dame todos los Canales
 	path('qry1/', CanalesViewSet.as_view({'get': 'list'}), name='qry1'),
 

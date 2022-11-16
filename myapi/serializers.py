@@ -41,7 +41,12 @@ class TextoEntradaSerializer(serializers.HyperlinkedModelSerializer):
 	id_e = serializers.SlugRelatedField(read_only=True, slug_field='id_e')
 	class Meta:
 		model = Texto
-		fields = ('id_e', 'id_t', 'texto_t', 'imagen_t')
+		fields = (
+			'id_e',
+            'id_t',
+            'texto_t',
+            #'imagen_t',
+        )
 
 #class RedsocialArtistaSerializer(serializers.ModelSerializer):
 #	id_a = serializers.SlugRelatedField(read_only=True, slug_field='nombre_a')
