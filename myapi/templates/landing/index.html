@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+	<title>BlogAPP - Home</title>
+{% endblock title %}
+{% block content %}
+	<div class="row">
+		<h1>BLOGAPP</h1>
+		<div class="artista">
+			{% if canales|length < 1  %}
+				<h2>No hay canales</h2>
+			{% else %}
+				<h2>Canales</h2>
+				{% for canal in canales %}
+				<div class="col-lg-4">
+					<img class="thumbnail" src="static{{canal.imageURL}}">
+					<div class="box-element product">
+						<h3><strong>{{canal.nombre_c}}</strong></h3>
+						<a href="{% url 'canal' %}?id={{canal.id_c}}" class="btn btn-outline-secondary artistimg">Abrir</a>
+						<!--a class="btn btn-outline-success" href="#">View</a>
+						<br>
+						<h4 style="display: inline-block; float: right"><strong>${{artista.descripcion_a}}</strong></h4>
+						<br>
+						<h3 style="display: inline-block; float: right"><strong>${{artista.id_tag}}</strong></h4-->
+					</div>
+				</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock content %}

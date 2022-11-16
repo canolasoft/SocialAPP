@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>BlogAPP - Canal</title>
+{% endblock title %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-10 margin">
+            <a class="btn btn-outline-dark" href="{% url '' %}">&#x2190; Volver</a>
+        </div>
+        <br>
+        <br>
+        <div class="max800 margin">
+            <h1>{{canal.nombre_c}}</h1>
+            <br>
+            <img id="musicoImage" class="artistimg" src="../static/images/{{canal.imagen_c}}">
+            <table class="col-lg-12 col-md-8 col-sm-4">
+                <tr>
+                    <td>
+                        <a id="linkGen0" href=""><img class="genicon" id="musicoGenero0"></a>
+                        <a id="linkGen1" href=""><img class="genicon" id="musicoGenero1"></a>
+                        <a id="linkGen2" href=""><img class="genicon" id="musicoGenero2"></a>
+                    </td>
+                </tr>
+                <tr><td colspan="2"><hr></td></tr>
+                <tr>
+                    <td>Tags:&nbsp;</td>
+                    <td id="musicoFcreacion">{{canal.id_tag}}</td>
+                </tr>
+                <tr><td colspan="2"><hr></td></tr>
+                <tr>
+                    <td>Cantidad de músicos:&nbsp;</td>
+                    <td id="musicoCantidad">{{canal.descripcion_c}}</td>
+                </tr>
+                <tr>
+                    <td>Redes Sociales:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" id="linkRed0"><img class="redicon" id="imagenRed0"></a>
+                        <a target="_blank" id="linkRed1"><img class="redicon" id="imagenRed1"></a>
+                        <a target="_blank" id="linkRed2"><img class="redicon" id="imagenRed2"></a>
+                    </td>
+                </tr>
+                <tr><td colspan="2"><hr></td></tr>
+                <tr id="videos" class="videosdiv">
+                    <td>Entradas:
+                        <br><br>
+                    </td>
+                </tr>
+                <tr><td colspan="2">
+                    {% for entrada in entradas %}
+                        <h4>{{entrada.nombre_e}}</h4>
+                        <p>{{entrada.descripcion_e}}</p>
+                        <img class="thumbnail" src="static/images/{{entrada.imagen_e}}" alt="Imagen de entrada">
+                        <br>
+                        {% for texto in textos %}
+                            {% if texto.id_e.id_e == entrada.id_e %}
+                                <p>- {{texto.texto_t}}</p>
+                            {% endif %}
+                        {% endfor %}
+                        <h4>Añade un comentario</h4>
+                        <form action="{% url 'canal' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="id_e" value="{{entrada.id_e}}">
+                            <input type="hidden" name="id" value="{{canal.id_c}}">
+                            <input type="text" name="texto_t">
+                            <button type="submit">Comentar</button>
+                        </form>
+                        <hr>
+                    {% endfor %}
+                </td></tr>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+
+
